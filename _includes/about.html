@@ -1,26 +1,29 @@
-<!-- About Section -->
-<section class="success" id="about">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <h2>About</h2>
-        <hr class="star-light">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-4 col-lg-offset-2">
-        <p>I'm an experienced software architect with over 17 years of expertise in the field. Throughout my career, I have specialized in modern architecture patterns, including Distributed Systems, Domain-Driven Design, and Event-Driven architectures. With a passion for simplifying complex concepts, I strive to make technology more accessible and understandable for everyone.
-          In recent years, I have directed my focus towards cloud-native architecture and Complex Event Processing Platforms. This shift has allowed me to stay at the forefront of emerging trends and technologies in the industry.</p>
-      </div>
-    <!--  <div class="col-lg-4">
-        <p>Whether you're a student looking to showcase your work, a professional looking to attract clients, or
-          a graphic artist looking to share your projects, this template is the perfect starting point! </p>
-      </div>
-      <div class="col-lg-8 col-lg-offset-2 text-center">
-        <a href="https://github.com/jeromelachaud/freelancer-theme" class="btn btn-lg btn-outline">
-          <i class="fa fa-download"></i> Download Theme
-        </a>
-      </div>-->
-    </div>
-  </div>
+<section class="hero is-fullheight has-text-centered has-background-white-ter" id="about">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-one-fifth-desktop is-one-fifth-tablet is-one-fifth-fullhd">
+                    <figure class="image">
+                        <img class="is-rounded" src="{{site.author-image}}" alt="{{site.author-name}}">
+                    </figure>
+                </div>
+                <div class="column has-text-left-desktop has-text-left-tablet has-text-left-fullhd has-text-left-widescreen">
+                    <p>{{site.author-about}}</p>
+                    <br>
+                    <div class="container columns is-centered">
+                        <div>
+                            <a href="{{site.url}}{{site.baseurl}}/#contact"
+                                class="button is-rounded is-uppercase has-text-weight-normal is-black is-outlined">Contact
+                                Me</a>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="{{site.url}}{{site.baseurl}}/blog"
+                                class="button is-rounded is-uppercase has-text-weight-normal is-black is-outlined">Blog</a>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 </section>

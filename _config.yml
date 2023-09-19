@@ -1,71 +1,97 @@
-# Site settings
-title: I am Ehsan!
-email: ed.man6ri@gmail.com
-url: https://github.com/E4M9i/
-description: "My name is Ehsan"
-keywords: "your keywords, separated by commas"
-skills: "Software Architect"
-meta_author: LastName FirstName
+# WhatATheme
+markdown: kramdown
 
-# Google webmaster tools
-google_verify:
+# URL of the Site
+url: ''
+# Base URL of the Site (i.e., Name of the Repository in which the Site is hosted)
+baseurl: 
 
-# https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
-bing_verify:
+# Title of the Site
+title: Geekish Fun
+# Description of the Site
+description: Hi, I'm Ehsan!
+# URL of Image of the Site
+site-image: /WhatATheme/assets/images/meta.jpg
+# Keywords of the Site
+site-keywords: Site, Template, Theme
+# URL for the Image of custom Favicon
+favicon-url: 
 
-# Contact form:
-# - static : pass through formspree.io to validate email sending
-# - disqus : replace contact form by disqus thread
-# - comment the line below if you want to stick with the default PHP contact form
-contact: static
+# URL of the Image of Custom Hero Image (i.e., the image in the background of the very first section of the Homepage)
+heroimage: https://images.pexels.com/photos/220444/pexels-photo-220444.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940
 
-# If you use disqus you need disqus shortname
-# https://help.disqus.com/customer/portal/articles/466208
-disqus_shortname: myshortname
+# Social Media and Contact
+# If you don't want to use any icon, you can leave them blank.
+email: thedevslot@gmail.com
+facebook_username: thedevslot
+twitter_username: thedevslot
+instagram_username: thedevslot
+linkedin_username: thedevslot
+github_username:  thedevslot
+youtube_channel_id: UCk_93NXYP-U_AOB5GfWlOow
+reddit_username: /
+behance_username: /
+dribbble_username: /
+spotify_username: /
 
-# Color settings (hex-codes without the leading hash-tag)
-color:
-  primary: 18bc9c #80B3FF
-  primary-rgb: "24,288,156" #"128,179,255"
-  secondary: 2c3e50 #FD6E8A
-  secondary-dark: 233140 #A2122F
+# Google Analytics
+google-analytics: UA-163806439-1
 
-# Footer settings
-footer:
-  copyright: Ehsan Manouchehri
-  location: Location
-  social: Around the Web
-  #credits: Credits
+# Disqus
+disqus-shortname: thedevslot
 
-# Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
-social:
-  - title: twitter
-    url: http://twitter.com
-  - title: facebook
-    url:
-  - title: stack-overflow
-    url: http://stackoverflow.com
-  - title: bitbucket
-    url: http://bitbucket.org
-  - title: github
-    url: http://github.com
+# Name of the Author
+author-name: Ehsan Manouchehri
+# URL for the Image of the Author
+author-image: https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png
+# 60 Words About the Author
+author-about: I'm an experienced software architect with over 17 years of expertise in the field. Throughout my career, I have specialized in modern architecture patterns, including Distributed Systems, Domain-Driven Design, and Event-Driven architectures. With a passion for simplifying complex concepts, I strive to make technology more accessible and understandable for everyone. In recent years, I have directed my focus towards cloud-native architecture and Complex Event Processing Platforms. This shift has allowed me to stay at the forefront of emerging trends and technologies in the industry.
+# URL to the Author's Profile (i.e., Github, Twitter, Stackoverflow, etc)
+author-url: https://github.com/thedevslot
 
-# Postal address (add as many lines as necessary)
-address:
-  - line: Planet Earth
- # - line: Beverly Hills, CA 90210
-
-# Credits content
-#credits: 'Freelancer is a free to use, open source Bootstrap theme created by <a href="http://startbootstrap.com">Start Bootstrap</a>.'
+# SASS
+sass:
+  sass_dir: _sass
+  style: compressed
 
 # Build settings
-markdown: kramdown
-permalink: pretty
+plugins:
+  - jekyll-admin
+  - jekyll-feed
 
-#for posts
+# Permalink
+permalink: "blog/:title"
+
+# Compress
+compress_html:
+  clippings: all
+
+# Defaults
 defaults:
-  - scope:
-      path: ""
-      type: "posts"
+  -
+    scope:
+      type: 'posts'
     values:
-      permalink: ""
+      layout: post
+      post-image: ""
+      description: ""
+      tags:
+        - ""
+  -
+    scope:
+      type: 'pages'
+    values:
+      layout: page
+
+# Exclude
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
