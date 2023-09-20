@@ -7,13 +7,14 @@ url: ''
 baseurl: 
 
 # Title of the Site
-title: Geekish Fun
+title: {Geekish} Fun
 # Description of the Site
-description: Hi, I'm Ehsan!
+description: Welcome to the geekish fun.
+headerdescription: Hi, I'm Ehsan!
 # URL of Image of the Site
 site-image: /WhatATheme/assets/images/meta.jpg
 # Keywords of the Site
-site-keywords: Site, Template, Theme
+site-keywords: Geek, Geekish,Fun,C#,Data,AI,
 # URL for the Image of custom Favicon
 favicon-url: 
 
@@ -22,13 +23,13 @@ heroimage: https://images.pexels.com/photos/220444/pexels-photo-220444.jpeg?auto
 
 # Social Media and Contact
 # If you don't want to use any icon, you can leave them blank.
-email: thedevslot@gmail.com
-facebook_username: thedevslot
-twitter_username: thedevslot
-instagram_username: thedevslot
-linkedin_username: thedevslot
-github_username:  thedevslot
-youtube_channel_id: UCk_93NXYP-U_AOB5GfWlOow
+email: ed.man6ri@gmail.com
+facebook_username: /
+twitter_username: /
+instagram_username: /
+linkedin_username: ehsan-manouchehri-79a6859b
+github_username:  E4M9i
+youtube_channel_id: / #UCk_93NXYP-U_AOB5GfWlOow
 reddit_username: /
 behance_username: /
 dribbble_username: /
@@ -38,7 +39,7 @@ spotify_username: /
 google-analytics: UA-163806439-1
 
 # Disqus
-disqus-shortname: thedevslot
+disqus-shortname: Ehsan
 
 # Name of the Author
 author-name: Ehsan Manouchehri
