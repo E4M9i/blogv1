@@ -6,6 +6,7 @@
             <a class="navbar-item"
                 href="{% if page.layout == 'default' %}{{site.url}}{{site.baseurl}}/#{% else %}{{site.url}}{{site.baseurl}}/{% endif %}">
                 <strong>{{site.title}}</strong>
+                <img src="{{site.favicon-url}}" alt="Logo" class="navbar-logo">
             </a>
             <div class="navbar-burger" data-target="navbar-menu">
                 <span></span>

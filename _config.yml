@@ -12,11 +12,11 @@ title: Geekish.Fun
 description: Welcome to the Geekish.Fun
 headerdescription: Hi, I'm Ehsan!
 # URL of Image of the Site
-site-image: /blogv1/assets/images/meta.png
+site-image: /assets/images/meta.png
 # Keywords of the Site
 site-keywords: Geek, Geekish,Fun,C#,Data,AI,coding,blog
 # URL for the Image of custom Favicon
-favicon-url: /blogv1/assets/images/logo.png
+favicon-url: /assets/images/logo.png
 
 # URL of the Image of Custom Hero Image (i.e., the image in the background of the very first section of the Homepage)
 #heroimage: https://images.pexels.com/photos/220444/pexels-photo-220444.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940

@@ -37,6 +37,15 @@ a.navbar-item.is-active {
     border-color: grey;
 }
 
+.navbar-item {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-logo {
+    margin-left: 10px; /* Adjust as needed */
+    height: 40px; /* Adjust as needed */
+}
 
 #hero {
     background: rgb(0, 0, 0);
