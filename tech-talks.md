@@ -1,5 +1,4 @@
 ---
 title: Tech Talks
-layout:  Tech Talks
+layout:  page
 ---
-
