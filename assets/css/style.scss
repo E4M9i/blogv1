@@ -33,10 +33,12 @@ a.navbar-item.is-active {
     }
 }
 
+a.navbar-link,
 .navbar-link:not(.is-arrowless)::after {
     border-color: grey;
 }
 
+a.navbar-item,
 .navbar-item {
     display: flex;
     align-items: center;
