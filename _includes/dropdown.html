@@ -3,8 +3,8 @@
         MORE
     </a>
     <div class="navbar-dropdown has-background-black is-left">
-        {% for sitepage in site.html_pages %}
         {% assign excluded_paths = "['/', '/404', '/blog', '/Archive']" %}
+        {% for sitepage in site.html_pages %}       
         {% unless excluded_paths contains sitepage.url %}
         <!--  {% unless sitepage.url == '/' or sitepage.url == '/404'  or sitepage.url == '/blog' or sitepage.url == '/Archive' %}-->
         <a href="{{sitepage.url | absolute_url}}"
