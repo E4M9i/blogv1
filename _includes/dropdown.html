@@ -4,7 +4,9 @@
     </a>
     <div class="navbar-dropdown has-background-black is-left">
         {% for sitepage in site.html_pages %}
-        {% unless sitepage.url == '/' or sitepage.url == '/404'  or sitepage.url == '/blog' %}
+        {% assign excluded_paths = "['/', '/404', '/blog', '/Archive']" %}
+        {% unless excluded_paths contains sitepage.url %}
+        <!--  {% unless sitepage.url == '/' or sitepage.url == '/404'  or sitepage.url == '/blog' or sitepage.url == '/Archive' %}-->
         <a href="{{sitepage.url | absolute_url}}"
             class="navbar-item has-text-grey-light {% if page.url == sitepage.url | absolute_url  %}is-active{% endif %}">
             {{sitepage.title}}
