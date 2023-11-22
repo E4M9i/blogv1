@@ -1,7 +1,7 @@
 ---
 title: Data Saturday 44 - Cape Town - South Africa
 layout: post
-post-image: "https://raw.githubusercontent.com/E4M9i/blogv1/main/assets/images/ds4401.png"
+post-image: "https://raw.githubusercontent.com/E4M9i/blogv1/main/assets/images/ds4401.jpg"
 
 description: Data Protection X-Factor> Real-Time Sensitive Data Detection with Kafka and Presidio
 tags:
@@ -29,6 +29,7 @@ Building on this foundation, the talk introduces Presidio, an open-source data p
 * Kafka facilitates seamless data processing, ingestion, and distribution in real-time.
 * Presidio employs advanced AI algorithms to detect and classify sensitive information like PII and financial data.
 * The integration of Kafka and Presidio creates a robust real-time sensitive data recognition system.
+
 ---
 
 ### Slides
