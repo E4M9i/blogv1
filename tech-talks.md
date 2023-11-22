@@ -1,4 +1,4 @@
 ---
 title: Tech Talks
-layout:  page
+layout:  project
 ---
