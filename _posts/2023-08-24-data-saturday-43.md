@@ -1,5 +1,5 @@
 ---
-title: Data Saturday 43 - Durabn - South Africa
+title: Data Saturday 43 - Durban - South Africa
 layout: post
 post-image: "https://raw.githubusercontent.com/E4M9i/blogv1/main/assets/images/ds4301.png"
 
