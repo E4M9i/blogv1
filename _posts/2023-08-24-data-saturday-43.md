@@ -1,7 +1,7 @@
 ---
 title: Data Saturday 43 - Durabn - South Africa
 layout: post
-post-image: "https://github.com/E4M9i/blogv1/blob/0ac4eaef16ce3b2abd79da8f79c493f004e8cd9a/assets/images/ds4301.png"
+post-image: "/blogv1/assets/images/ds4301.png"
 
 description: Event Versioning Made Easy with Schema Registry
 tags:
