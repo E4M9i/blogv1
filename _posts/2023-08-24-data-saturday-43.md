@@ -1,7 +1,7 @@
 ---
 title: Data Saturday 43 - Durabn - South Africa
 layout: post
-post-image: "/blogv1/assets/images/ds4301.png"
+post-image: "https://github.com/E4M9i/blogv1/blob/b150a556a0140bbe1f5f2ef5147ac853667aed05/assets/images/ds4301.png"
 
 description: Event Versioning Made Easy with Schema Registry
 tags:
@@ -13,12 +13,11 @@ tags:
 - event versioning
 ---
 
-#### Abstract :
 In this talk, I discussed the concept of Event Evolution within the **Event-Driven** ecosystem, exploring the challenges that arise as data formats and structures evolve over time.<br> 
 I uncovered the key strategies and mechanisms that enable **Kafka** and the **Schema Registry** to seamlessly adapt to evolving events, ensuring data consistency, compatibility, and smooth integration across the system.
 By leveraging the robust capabilities of Kafka and the Schema Registry, we can navigate the complex landscape of Event Evolution with confidence.
 
-Key Takeaways:
+### Key Takeaways:
 1. Understanding the concept of Event Evolution and its challenges in the Event-Driven ecosystem.
 2. Exploring the role of Apache Kafka and Schema Registry in addressing these challenges.
 3. Discussing key strategies and mechanisms for seamlessly adapting to evolving events.
