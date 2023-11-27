@@ -1,5 +1,5 @@
 ---
-title: "Streamlining Game Logic: State Machines & Unit Testing in 'Game of Life'"
+title: State Machines & Unit Testing in 'Game of Life'
 layout: post
 post-image: "https://raw.githubusercontent.com/E4M9i/blogv1/main/assets/images/GOL.png"
 
