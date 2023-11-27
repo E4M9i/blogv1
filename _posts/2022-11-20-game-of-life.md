@@ -20,7 +20,7 @@ tags:
 ---
 
 ### Section 1: Understanding the State Machine in the Game of Life
-The Game of Life is a cellular automaton devised by the mathematician John Conway. In this game, each cell on a grid can be in one of two states: Alive or Dead. These states change over time according to specific rules, making the Game of Life an excellent example of a state machine.
+The Game of Life is a cellular automaton devised by the mathematician [John Conway](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life). In this game, each cell on a grid can be in one of two states: Alive or Dead. These states change over time according to specific rules, making the Game of Life an excellent example of a state machine.
 
 #### State Enumeration
 ```csharp
