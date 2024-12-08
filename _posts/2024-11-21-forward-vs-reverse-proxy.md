@@ -2,7 +2,7 @@
 layout: post
 title: "Forward Proxy vs Reverse Proxy: Understanding the Key Differences"
 description: "A comprehensive comparison of forward and reverse proxies, their use cases, and when to use each"
-post-image: "https://raw.githubusercontent.com/E4M9i/blogv1/main/assets/images/Frame1.gif"
+post-image: "https://raw.githubusercontent.com/E4M9i/blogv1/main/assets/images/fwd_proxy.gif"
 date: 2024-03-21
 categories: [networking, security, infrastructure]
 tags:
