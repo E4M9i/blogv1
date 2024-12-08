@@ -2,8 +2,16 @@
 layout: post
 title: "Forward Proxy vs Reverse Proxy: Understanding the Key Differences"
 description: "A comprehensive comparison of forward and reverse proxies, their use cases, and when to use each"
+post-image: "https://raw.githubusercontent.com/E4M9i/blogv1/main/assets/images/frame1.gif"
 date: 2024-03-21
 categories: [networking, security, infrastructure]
+tags:
+- Proxy
+- Networking
+- Security
+- Infrastructure
+- LoadBalancing
+- WebArchitecture
 ---
 
 ## What is a Proxy Server?
@@ -49,6 +57,7 @@ In this setup, all clients route their traffic through the forward proxy to reac
 ## Reverse Proxy
 A reverse proxy sits in front of web servers and forwards client requests to those servers.
 
+  
 ```mermaid
 graph LR
     subgraph Clients
@@ -72,7 +81,13 @@ graph LR
     RP --> S2
     RP --> S3
 
-    style RP fill:#f9f,stroke:#333,stroke-width:2px
+    style C1 fill:#4d94ff,stroke:#0052cc,stroke-width:2px
+    style C2 fill:#4d94ff,stroke:#0052cc,stroke-width:2px 
+    style C3 fill:#4d94ff,stroke:#0052cc,stroke-width:2px
+    style S1 fill:#00ff9d,stroke:#00cc7a,stroke-width:2px
+    style S2 fill:#00ff9d,stroke:#00cc7a,stroke-width:2px
+    style S3 fill:#00ff9d,stroke:#00cc7a,stroke-width:2px
+    style RP fill:#bf80ff,stroke:#9933ff,stroke-width:2px
 ```
 
 In this configuration, clients connect to what appears to be a single server (the reverse proxy), which then distributes requests across multiple backend servers transparently.
