@@ -3,7 +3,7 @@ layout: post
 title: "Forward Proxy vs Reverse Proxy"
 description: "A comprehensive comparison of forward and reverse proxies, their use cases, and when to use each"
 post-image: "https://raw.githubusercontent.com/E4M9i/blogv1/main/assets/images/fwd_vs_rev_proxy.jpg"
-date: 2024-03-21
+date: 2024-11-23
 categories: [networking, security, infrastructure, devops, architecture, web-development]
 tags:
 - Proxy
@@ -105,7 +105,7 @@ In a microservices environment, reverse proxies often act as the API gateway, pr
 - **Monitoring Point**: Centralized logging and monitoring of all service traffic
 - **Circuit Breaking**: Preventing cascade failures across services
 
-This foundational role makes reverse proxies an essential component in modern distributed systems.
+This foundational role makes reverse proxies an essential component in modern distributed systems, which we'll explore in detail in our next discussion about microservices architecture.
 
 ## Conclusion
 While both types of proxies act as intermediaries, they serve different purposes. Forward proxies help protect client privacy and control access, while reverse proxies help protect and optimize server operations. Understanding these differences is crucial for implementing the right solution for your specific needs. 
