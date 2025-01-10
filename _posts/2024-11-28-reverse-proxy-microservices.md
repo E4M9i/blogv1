@@ -2,7 +2,7 @@
 layout: post
 title: "Reverse Proxies in Microservice Architecture"
 description: "Deep dive into how reverse proxies enable and enhance microservice architectures, from API gateways to service mesh implementations"
-post-image: "https://raw.githubusercontent.com/E4M9i/blogv1/main/assets/images/reverse_proxy_microservices.jpg"
+post-image: "https://raw.githubusercontent.com/E4M9i/blogv1/main/assets/images/Gateway01.gif"
 date: 2024-11-28
 categories: [microservices, architecture, infrastructure, devops, networking]
 tags:
