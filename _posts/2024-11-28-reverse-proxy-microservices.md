@@ -1,9 +1,9 @@
 ---
 layout: post
 title: "Reverse Proxies in Microservice Architecture"
-description: "Deep dive into how reverse proxies enable and enhance microservice architectures, from API gateways to service mesh implementations"
+description: "Exploring the evolution of reverse proxies from basic routing to full-featured API gateways, including key patterns and decision frameworks for microservice architectures"
 post-image: "https://raw.githubusercontent.com/E4M9i/blogv1/main/assets/images/rev_prox_evol.gif"
-date: 2024-11-28
+date: 2025-01-07
 categories: [microservices, architecture, infrastructure, devops, networking]
 tags:
 - Microservices
@@ -67,11 +67,11 @@ The mature platform:
 - Versioning
 - Analytics
 
-## Key Patterns (Preview of Future Posts)
+## Key Patterns
 
-In microservice architectures, patterns emerge as battle-tested solutions to recurring challenges. These patterns represent collective wisdom from countless implementations across the industry, offering proven approaches to common problems. Rather than reinventing solutions (because seriously, who has time to rediscover fire? Been there, rebuilt that, got the debugging scars), teams can leverage these established patterns to build more reliable and maintainable systems.
+As reverse proxies evolved from basic routing to full-featured API gateways, certain patterns emerged as battle-tested solutions to recurring challenges. These patterns represent collective wisdom from countless implementations across the industry, offering proven approaches to common problems. Rather than reinventing solutions `(because seriously, who has time to rediscover fire? Been there, rebuilt that, got the debugging scars)`, teams can leverage these established patterns to build more reliable and maintainable systems.
 
-The following patterns have become fundamental building blocks in reverse proxy implementations:
+The following patterns have become fundamental building blocks in reverse proxy implementations, with different patterns becoming relevant at each stage of proxy evolution:
 
 ### 1. Gateway Patterns
 - Backend for Frontend (BFF)
@@ -141,8 +141,3 @@ This post is part of a series exploring microservice patterns. Future posts will
 
 ## Conclusion
 Understanding the evolution and role of proxies and gateways is crucial for building effective microservice architectures. Start simple, evolve as needed, and choose the right level of sophistication for your specific use case.
-
-## Related Posts
-- [Forward vs Reverse Proxies](link-to-previous-post)
-- [API Gateway Patterns](coming-soon)
-- [Service Mesh Architecture](coming-soon)
