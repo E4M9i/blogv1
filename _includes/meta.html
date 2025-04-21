@@ -7,6 +7,24 @@
 <meta name="keywords" content="{{site.site-keywords}}">
 <title>{{site.title}}{% if page.title %} | {{page.title}}{% endif %}</title>
 
+<!-- Robots Control -->
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="{{site.url}}{{site.baseurl}}{{page.url}}">
+
+<!-- Search Engine -->
+<meta name="description" content="{% unless page.layout == 'post' %}{{site.description}}{% else %}{{page.description}}{% endunless %}">
+<meta name="image" content="{% unless page.layout == 'post' %}{{site.site-image}}{% else %}{{page.post-image}}{% endunless %}">
+<meta name="author" content="{{site.author-name}}"/>
+
+<!-- Schema.org for Google -->
+<meta itemprop="name" content="{{site.title}}{% if page.title %} | {{page.title}}{% endif %}">
+<meta itemprop="description" content="{% unless page.layout == 'post' %}{{site.description}}{% else %}{{page.description}}{% endunless %}">
+<meta itemprop="image" content="{% unless page.layout == 'post' %}{{site.site-image}}{% else %}{{page.post-image}}{% endunless %}">
+
 <!-- Open Graph general (Facebook, Pinterest & Google+) -->
 <meta name="og:title" content="{{site.title}}{% if page.title %} | {{page.title}}{% endif %}">
 <meta name="og:description" content="{% unless page.layout == 'post' %}{{site.description}}{% else %}{{page.description}}{% endunless %}">
@@ -15,7 +33,15 @@
 <meta name="og:url" content="{{site.url}}{{site.baseurl}}{{page.url}}">
 <meta name="article:author" content="https://www.facebook.com/{{site.facebook_username}}">
 <meta name="og:site_name" content="{{site.title}}{% if page.title %} | {{page.title}}{% endif %}">
-<meta name="og:type" content="website">
+<meta name="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+{% if page.layout == 'post' %}
+<meta property="article:published_time" content="{{page.date | date_to_xmlschema}}">
+<meta property="article:modified_time" content="{% if page.last_modified_at %}{{page.last_modified_at | date_to_xmlschema}}{% else %}{{page.date | date_to_xmlschema}}{% endif %}">
+{% if page.categories %}<meta property="article:section" content="{{page.categories[0]}}">{% endif %}
+{% for tag in page.tags %}<meta property="article:tag" content="{{tag}}">
+{% endfor %}
+{% endif %}
+
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="{{site.title}}{% if page.title %} | {{page.title}}{% endif %}">
@@ -23,24 +49,208 @@
 <meta name="twitter:site" content="@{{site.twitter_username}}">
 <meta name="twitter:creator" content="@{{site.twitter_username}}">
 <meta name="twitter:image:src" content="{% unless page.layout == 'post' %}{{site.site-image}}{% else %}{{page.post-image}}{% endunless %}">
-<!-- Search Engine -->
-<meta name="description" content="{% unless page.layout == 'post' %}{{site.description}}{% else %}{{page.description}}{% endunless %}">
-<meta name="image" content="{% unless page.layout == 'post' %}{{site.site-image}}{% else %}{{page.post-image}}{% endunless %}">
-<!-- Schema.org for Google -->
-<meta itemprop="name" content="{{site.title}}{% if page.title %} | {{page.title}}{% endif %}">
-<meta name="author" content="{{site.author-name}}"/>
-<meta itemprop="description" content="{% unless page.layout == 'post' %}{{site.description}}{% else %}{{page.description}}{% endunless %}">
-<meta itemprop="image" content="{% unless page.layout == 'post' %}{{site.site-image}}{% else %}{{page.post-image}}{% endunless %}">
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
+<!-- Favicons -->
+<link rel="apple-touch-icon" sizes="180x180" href="{{site.baseurl}}/assets/images/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="{{site.baseurl}}/assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="{{site.baseurl}}/assets/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="{{site.baseurl}}/assets/images/favicon/site.webmanifest">
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  {% if page.layout == 'post' %}
+  "@type": "BlogPosting",
+  "headline": "{{page.title}}",
+  "image": "{{page.post-image}}",
+  "datePublished": "{{page.date | date_to_xmlschema}}",
+  "dateModified": "{% if page.last_modified_at %}{{page.last_modified_at | date_to_xmlschema}}{% else %}{{page.date | date_to_xmlschema}}{% endif %}",
+  {% if page.categories %}"articleSection": "{{page.categories[0]}}",{% endif %}
+  {% if page.tags %}"keywords": "{% for tag in page.tags %}{{tag}}{% unless forloop.last %}, {% endunless %}{% endfor %}",{% endif %}
+  "description": "{{page.description}}",
+  {% else %}
+  "@type": "WebSite",
+  "headline": "{{site.title}}",
+  "url": "{{site.url}}{{site.baseurl}}",
+  "name": "{{site.title}}",
+  "description": "{{site.description}}",
+  {% endif %}
+  "author": {
+    "@type": "Person",
+    "name": "{{site.author-name}}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{site.title}}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{site.url}}{{site.baseurl}}/assets/images/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{site.url}}{{site.baseurl}}{{page.url}}"
+  }
+}
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-XXXX');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Google Analytics (GA4) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id={{site.google-analytics}}"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-        dataLayer.push(arguments);
-    }
+    function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    
+    // Privacy-focused default consent
+    gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied'
+    });
+    
+    // Function to update consent when user accepts
+    function updateConsent(consent) {
+        gtag('consent', 'update', {
+            'analytics_storage': consent ? 'granted' : 'denied',
+            'ad_storage': consent ? 'granted' : 'denied'
+        });
+    }
+    
+    // Configure with anonymized IP, custom dimensions and enhanced features
+    gtag('config', '{{site.google-analytics}}', {
+        'anonymize_ip': true,
+        'cookie_flags': 'max-age=7200;secure;samesite=none',
+        'page_location': window.location.href,
+        'page_title': document.title,
+        'custom_map': {
+            'dimension1': 'user_type',
+            'dimension2': 'content_category',
+            'dimension3': 'content_group'
+        }
+    });
+    
+    // Track outbound links
+    document.addEventListener('DOMContentLoaded', function() {
+        var links = document.getElementsByTagName('a');
+        for (var i = 0; i < links.length; i++) {
+            if (links[i].hostname != window.location.hostname) {
+                links[i].addEventListener('click', function(e) {
+                    gtag('event', 'click', {
+                        'event_category': 'outbound',
+                        'event_label': this.href,
+                        'transport_type': 'beacon'
+                    });
+                });
+            }
+        }
+        
+        // Set custom dimensions based on page types
+        gtag('event', 'page_view', {
+            'user_type': localStorage.getItem('user_type') || 'visitor',
+            'content_category': '{% if page.categories %}{{page.categories[0]}}{% else %}uncategorized{% endif %}',
+            'content_group': '{% if page.layout == "post" %}article{% else %}page{% endif %}'
+        });
+    });
+    
+    // Track page load performance
+    window.addEventListener('load', function() {
+        if (window.performance) {
+            var timeSincePageLoad = Math.round(performance.now());
+            gtag('event', 'timing_complete', {
+                'name': 'load',
+                'value': timeSincePageLoad,
+                'event_category': 'Page Load'
+            });
+        }
+        
+        // Implement scroll depth tracking
+        let scrollMarks = [25, 50, 75, 100];
+        let markers = {};
+        
+        function checkScrollDepth() {
+            let scrollPercent = Math.round((window.scrollY / (document.body.offsetHeight - window.innerHeight)) * 100);
+            scrollMarks.forEach(function(mark) {
+                if (scrollPercent >= mark && !markers[mark]) {
+                    markers[mark] = true;
+                    gtag('event', 'scroll_depth', {
+                        'depth': mark + '%',
+                        'page': window.location.pathname
+                    });
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', checkScrollDepth, {passive: true});
+        
+        // Track engagement time
+        let startTime = new Date();
+        let isActive = true;
+        let engagementInterval = setInterval(function() {
+            if (isActive) {
+                let engagementTime = Math.round((new Date() - startTime) / 1000);
+                if (engagementTime % 30 === 0) { // Log every 30 seconds
+                    gtag('event', 'engagement_time', {
+                        'time_seconds': engagementTime,
+                        'page': window.location.pathname
+                    });
+                }
+            }
+        }, 1000);
+        
+        window.addEventListener('blur', function() { isActive = false; });
+        window.addEventListener('focus', function() { 
+            isActive = true;
+            startTime = new Date();
+        });
+        
+        window.addEventListener('beforeunload', function() {
+            clearInterval(engagementInterval);
+            if (isActive) {
+                let engagementTime = Math.round((new Date() - startTime) / 1000);
+                gtag('event', 'engagement_time', {
+                    'time_seconds': engagementTime,
+                    'page': window.location.pathname
+                });
+            }
+        });
+    });
+    
+    // Form interaction tracking
+    document.addEventListener('DOMContentLoaded', function() {
+        const forms = document.querySelectorAll('form');
+        forms.forEach(function(form) {
+            form.addEventListener('submit', function() {
+                gtag('event', 'form_submit', {
+                    'form_id': this.id || 'unknown',
+                    'page': window.location.pathname
+                });
+            });
+            
+            const inputs = form.querySelectorAll('input, textarea, select');
+            inputs.forEach(function(input) {
+                input.addEventListener('focus', function() {
+                    gtag('event', 'form_start', {
+                        'form_id': form.id || 'unknown',
+                        'field_id': this.id || 'unknown',
+                        'page': window.location.pathname
+                    });
+                }, {once: true});
+            });
+        });
+    });
+</script>
 
-    gtag('config', '{{site.google-analytics}}');
+<!-- Heatmap/Session Recording Compatibility -->
+<script>
+    // This empty script allows for easy installation of heatmap tools
+    // such as Hotjar or Microsoft Clarity through GTM
+    // without modifying the main codebase
 </script>
