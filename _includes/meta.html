@@ -95,157 +95,34 @@
 }
 </script>
 
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-XXXX');</script>
-<!-- End Google Tag Manager -->
-
-<!-- Google Analytics (GA4) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id={{site.google-analytics}}"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GT-WKP789Q"></script>
 <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    
-    // Privacy-focused default consent
-    gtag('consent', 'default', {
-        'analytics_storage': 'denied',
-        'ad_storage': 'denied'
-    });
-    
-    // Function to update consent when user accepts
-    function updateConsent(consent) {
-        gtag('consent', 'update', {
-            'analytics_storage': consent ? 'granted' : 'denied',
-            'ad_storage': consent ? 'granted' : 'denied'
-        });
-    }
-    
-    // Configure with anonymized IP, custom dimensions and enhanced features
-    gtag('config', '{{site.google-analytics}}', {
-        'anonymize_ip': true,
-        'cookie_flags': 'max-age=7200;secure;samesite=none',
-        'page_location': window.location.href,
-        'page_title': document.title,
-        'custom_map': {
-            'dimension1': 'user_type',
-            'dimension2': 'content_category',
-            'dimension3': 'content_group'
-        }
-    });
-    
-    // Track outbound links
-    document.addEventListener('DOMContentLoaded', function() {
-        var links = document.getElementsByTagName('a');
-        for (var i = 0; i < links.length; i++) {
-            if (links[i].hostname != window.location.hostname) {
-                links[i].addEventListener('click', function(e) {
-                    gtag('event', 'click', {
-                        'event_category': 'outbound',
-                        'event_label': this.href,
-                        'transport_type': 'beacon'
-                    });
-                });
-            }
-        }
-        
-        // Set custom dimensions based on page types
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  
+  // Load the Google tag
+  gtag('config', 'GT-WKP789Q');
+  
+  // Also load GA4 measurement
+  gtag('config', '{{site.google-analytics}}');
+  
+  // Verification
+  console.log('Google tag initialized with ID: GT-WKP789Q and GA4: {{site.google-analytics}}');
+</script>
+
+<!-- Google Tag Manager code can be removed since we're using Google tag -->
+
+<!-- Simple Analytics Verification -->
+<script>
+    // Send a verification pageview to confirm tracking is working
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
         gtag('event', 'page_view', {
-            'user_type': localStorage.getItem('user_type') || 'visitor',
-            'content_category': '{% if page.categories %}{{page.categories[0]}}{% else %}uncategorized{% endif %}',
-            'content_group': '{% if page.layout == "post" %}article{% else %}page{% endif %}'
+            'debug_mode': true
         });
-    });
-    
-    // Track page load performance
-    window.addEventListener('load', function() {
-        if (window.performance) {
-            var timeSincePageLoad = Math.round(performance.now());
-            gtag('event', 'timing_complete', {
-                'name': 'load',
-                'value': timeSincePageLoad,
-                'event_category': 'Page Load'
-            });
-        }
-        
-        // Implement scroll depth tracking
-        let scrollMarks = [25, 50, 75, 100];
-        let markers = {};
-        
-        function checkScrollDepth() {
-            let scrollPercent = Math.round((window.scrollY / (document.body.offsetHeight - window.innerHeight)) * 100);
-            scrollMarks.forEach(function(mark) {
-                if (scrollPercent >= mark && !markers[mark]) {
-                    markers[mark] = true;
-                    gtag('event', 'scroll_depth', {
-                        'depth': mark + '%',
-                        'page': window.location.pathname
-                    });
-                }
-            });
-        }
-        
-        window.addEventListener('scroll', checkScrollDepth, {passive: true});
-        
-        // Track engagement time
-        let startTime = new Date();
-        let isActive = true;
-        let engagementInterval = setInterval(function() {
-            if (isActive) {
-                let engagementTime = Math.round((new Date() - startTime) / 1000);
-                if (engagementTime % 30 === 0) { // Log every 30 seconds
-                    gtag('event', 'engagement_time', {
-                        'time_seconds': engagementTime,
-                        'page': window.location.pathname
-                    });
-                }
-            }
-        }, 1000);
-        
-        window.addEventListener('blur', function() { isActive = false; });
-        window.addEventListener('focus', function() { 
-            isActive = true;
-            startTime = new Date();
-        });
-        
-        window.addEventListener('beforeunload', function() {
-            clearInterval(engagementInterval);
-            if (isActive) {
-                let engagementTime = Math.round((new Date() - startTime) / 1000);
-                gtag('event', 'engagement_time', {
-                    'time_seconds': engagementTime,
-                    'page': window.location.pathname
-                });
-            }
-        });
-    });
-    
-    // Form interaction tracking
-    document.addEventListener('DOMContentLoaded', function() {
-        const forms = document.querySelectorAll('form');
-        forms.forEach(function(form) {
-            form.addEventListener('submit', function() {
-                gtag('event', 'form_submit', {
-                    'form_id': this.id || 'unknown',
-                    'page': window.location.pathname
-                });
-            });
-            
-            const inputs = form.querySelectorAll('input, textarea, select');
-            inputs.forEach(function(input) {
-                input.addEventListener('focus', function() {
-                    gtag('event', 'form_start', {
-                        'form_id': form.id || 'unknown',
-                        'field_id': this.id || 'unknown',
-                        'page': window.location.pathname
-                    });
-                }, {once: true});
-            });
-        });
-    });
+        console.log('Analytics pageview sent for verification');
+    }
 </script>
 
 <!-- Heatmap/Session Recording Compatibility -->
