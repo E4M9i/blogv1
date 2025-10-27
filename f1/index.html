@@ -1,40 +1,64 @@
 ---
-layout: page
+layout: none
+title: F1 Top 6 Championship Forecast
 permalink: /f1/
 ---
-
-<div class="f1-page">
-  <header class="page-header">
-    <h1>F1 Top 6 Championship Forecast</h1>
-    <p>
-      Explore how the next four Grands Prix could reshape the championship by
-      assigning finishing positions to each of the top six drivers.
-    </p>
-  </header>
-  <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
-  <main class="page-content">
-    <section class="card">
-      <h2>Projected Championship Standings</h2>
-      <div id="standings"></div>
-    </section>
-    <section class="card">
-      <h2>Scenario Builder</h2>
-      <p class="helper-text">
-        Choose finishing positions for each of the four remaining races. A
-        finishing position can only be assigned to one driver per race.
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>F1 Top 6 Championship Forecast</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="page-header">
+      <a class="brand-link" href="{{ '/' | relative_url }}" aria-label="Go to Geekish home">
+        <img
+          src="{{ '/assets/images/logo.png' | relative_url }}"
+          alt="Geekish logo"
+          class="brand-link__logo"
+        />
+        <span class="brand-link__text">Geekish</span>
+      </a>
+      <h1>F1 Top 6 Championship Forecast</h1>
+      <p>
+        Explore how the next four Grands Prix could reshape the championship by
+        assigning finishing positions to each of the top six drivers.
       </p>
-      <div id="race-controls" class="race-controls"></div>
-      <div class="actions">
-        <button id="reset-button" type="button">Reset Scenario</button>
-      </div>
-    </section>
-  </main>
-  <footer class="page-footer">
-    <p class="note">
-      Points follow the 2025 FIA structure for Grand Prix (1st: 25, …, 10th: 1)
-      and Sprint (1st: 8, …, 8th: 1) results.
-    </p>
-  </footer>
-</div>
-<script src="{{ '/f1/script.js' | relative_url }}" defer></script>
+    </header>
+    <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
+    <main class="page-content">
+      <section class="card">
+        <h2>Projected Championship Standings</h2>
+        <div id="standings"></div>
+      </section>
+      <section class="card">
+        <h2>Scenario Builder</h2>
+        <p class="helper-text">
+          Choose finishing positions for each of the four remaining races. A
+          finishing position can only be assigned to one driver per race.
+        </p>
+        <div id="race-controls" class="race-controls"></div>
+        <div class="actions">
+          <button id="reset-button" type="button">Reset Scenario</button>
+        </div>
+      </section>
+    </main>
+    <footer class="page-footer">
+      <p class="note">
+        Points follow the 2025 FIA structure for Grand Prix (1st: 25, …, 10th: 1)
+        and Sprint (1st: 8, …, 8th: 1) results.
+      </p>
+      <p class="signature">Crafted by <a href="https://www.geekish.fun" rel="noopener">Ehsan @ Geekish.fun</a></p>
+    </footer>
+    <script src="script.js" defer></script>
+  </body>
+</html>
 
