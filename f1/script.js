@@ -3,42 +3,42 @@ const drivers = [
     id: "oscar-piastri",
     name: "Oscar Piastri",
     team: "McLaren",
-    points: 346,
+    points: 356,
     wins: 5,
   },
   {
     id: "lando-norris",
     name: "Lando Norris",
     team: "McLaren",
-    points: 332,
-    wins: 3,
+    points: 357,
+    wins: 4,
   },
   {
     id: "max-verstappen",
     name: "Max Verstappen",
     team: "Red Bull Racing",
-    points: 306,
+    points: 321,
     wins: 6,
   },
   {
     id: "george-russell",
     name: "George Russell",
     team: "Mercedes",
-    points: 252,
+    points: 258,
     wins: 2,
   },
   {
     id: "charles-leclerc",
     name: "Charles Leclerc",
     team: "Ferrari",
-    points: 192,
+    points: 210,
     wins: 2,
   },
   {
     id: "lewis-hamilton",
     name: "Lewis Hamilton",
     team: "Ferrari",
-    points: 142,
+    points: 146,
     wins: 1,
   },
 ];
@@ -46,15 +46,6 @@ const drivers = [
 const races = [
   {
     id: "race-1",
-    name: "Mexican Grand Prix",
-    hasSprint: false,
-    round: "Round 20",
-    date: "Oct 26, 2025",
-    circuit: "Autódromo Hermanos Rodríguez",
-    blurb: "High altitude trims power and punishes cooling—teams must trade raw pace for drivability at 2,200m above sea level.",
-  },
-  {
-    id: "race-2",
     name: "São Paulo Grand Prix",
     hasSprint: true,
     round: "Round 21",
@@ -63,7 +54,7 @@ const races = [
     blurb: "Interlagos finales rarely disappoint—changeable weather keeps the title fight alive until the chequered flag.",
   },
   {
-    id: "race-3",
+    id: "race-2",
     name: "Las Vegas Grand Prix",
     hasSprint: false,
     round: "Round 22",
@@ -72,7 +63,7 @@ const races = [
     blurb: "A neon night race demanding straight-line efficiency and tyre discipline as temperatures plummet on the strip.",
   },
   {
-    id: "race-4",
+    id: "race-3",
     name: "Qatar Grand Prix",
     hasSprint: true,
     round: "Round 23",
@@ -81,7 +72,7 @@ const races = [
     blurb: "Losail’s sweeping night layout and sprint format put tyre management and aero balance under the floodlights.",
   },
   {
-    id: "race-5",
+    id: "race-4",
     name: "Abu Dhabi Grand Prix",
     hasSprint: false,
     round: "Round 24",
@@ -99,6 +90,29 @@ races.forEach((race) => {
   scenarioState.set(race.id, new Map());
 });
 
+function applyLockedResults() {
+  races.forEach((race) => {
+    if (!race.readOnly || !race.lockedResults) {
+      return;
+    }
+
+    const raceState = getRaceState(race.id);
+    raceState.clear();
+
+    const raceResults = race.lockedResults.race ?? {};
+    Object.entries(raceResults).forEach(([driverId, position]) => {
+      raceState.set(driverId, position);
+    });
+
+    const sprintResults = race.lockedResults.sprint ?? {};
+    Object.entries(sprintResults).forEach(([driverId, position]) => {
+      raceState.set(getSprintKey(driverId), position);
+    });
+  });
+}
+
+applyLockedResults();
+
 const driverIndex = new Map(drivers.map((driver) => [driver.id, driver]));
 const raceIndex = new Map(races.map((race) => [race.id, race]));
 
@@ -109,6 +123,7 @@ const feedbackEl = document.getElementById("feedback");
 
 resetButton?.addEventListener("click", () => {
   scenarioState.forEach((raceState) => raceState.clear());
+  applyLockedResults();
   renderControls();
   setFeedback("Scenario cleared.", "success");
   renderStandings();
@@ -173,6 +188,10 @@ function renderControls() {
     const raceCard = document.createElement("section");
     raceCard.className = "race-card";
     raceCard.dataset.raceId = race.id;
+    const isReadOnly = Boolean(race.readOnly);
+    if (isReadOnly) {
+      raceCard.classList.add("race-card--locked");
+    }
 
     const title = document.createElement("header");
     title.className = "race-card__title";
@@ -187,6 +206,13 @@ function renderControls() {
     meta.textContent = `${race.round} • ${race.circuit}`;
 
     raceCard.append(title, meta);
+
+    if (isReadOnly) {
+      const lockedNotice = document.createElement("p");
+      lockedNotice.className = "race-card__locked-note";
+      lockedNotice.textContent = "Official classification confirmed. This race is read-only.";
+      raceCard.append(lockedNotice);
+    }
 
     const table = document.createElement("table");
     table.className = "race-table";
@@ -232,7 +258,9 @@ function renderControls() {
         input.dataset.session = "race";
         input.checked = currentSelection === position;
 
-        input.addEventListener("change", handleRadioChange);
+        if (!isReadOnly) {
+          input.addEventListener("change", handleRadioChange);
+        }
 
         cell.append(input);
         row.append(cell);
@@ -247,7 +275,9 @@ function renderControls() {
       noneInput.dataset.position = "";
       noneInput.dataset.session = "race";
       noneInput.checked = currentSelection === "";
-      noneInput.addEventListener("change", handleRadioChange);
+      if (!isReadOnly) {
+        noneInput.addEventListener("change", handleRadioChange);
+      }
       noneCell.append(noneInput);
       row.append(noneCell);
 
@@ -309,7 +339,9 @@ function renderControls() {
           input.dataset.session = "sprint";
           input.checked = sprintSelection === position;
 
+        if (!isReadOnly) {
           input.addEventListener("change", handleSprintChange);
+        }
 
           cell.append(input);
           row.append(cell);
@@ -324,7 +356,9 @@ function renderControls() {
         noneInput.dataset.position = "";
         noneInput.dataset.session = "sprint";
         noneInput.checked = sprintSelection === "";
-        noneInput.addEventListener("change", handleSprintChange);
+        if (!isReadOnly) {
+          noneInput.addEventListener("change", handleSprintChange);
+        }
         noneCell.append(noneInput);
         row.append(noneCell);
 
@@ -462,6 +496,8 @@ function handleSprintChange(event) {
 
 function refreshRaceInputs(raceId) {
   const raceState = getRaceState(raceId);
+  const raceInfo = raceIndex.get(raceId);
+  const isReadOnly = Boolean(raceInfo?.readOnly);
   const inputs = controlsContainer.querySelectorAll(
     `input[data-race-id="${raceId}"]`
   );
@@ -473,11 +509,25 @@ function refreshRaceInputs(raceId) {
 
     if (position === "") {
       input.checked = assignedPosition === "";
-      input.disabled = false;
+      input.disabled = isReadOnly;
+      if (isReadOnly) {
+        input.setAttribute("aria-disabled", "true");
+        input.tabIndex = -1;
+      } else {
+        input.removeAttribute("aria-disabled");
+        input.tabIndex = 0;
+      }
       return;
     }
 
     input.checked = assignedPosition === position;
+
+    if (isReadOnly) {
+      input.disabled = true;
+      input.setAttribute("aria-disabled", "true");
+      input.tabIndex = -1;
+      return;
+    }
 
     const isSprint = session === "sprint";
     const conflict = Array.from(raceState.entries()).some(
@@ -488,6 +538,11 @@ function refreshRaceInputs(raceId) {
     );
 
     input.disabled = conflict;
+    if (conflict) {
+      input.setAttribute("aria-disabled", "true");
+    } else {
+      input.removeAttribute("aria-disabled");
+    }
   });
 
   updateRaceStatus(raceId);
@@ -498,6 +553,7 @@ function updateRaceStatus(raceId) {
   const raceCard = controlsContainer.querySelector(
     `.race-card[data-race-id="${raceId}"]`
   );
+  const raceInfo = raceIndex.get(raceId);
 
   if (!raceCard) {
     return;
@@ -505,6 +561,11 @@ function updateRaceStatus(raceId) {
 
   const statusEl = raceCard.querySelector(".race-card__status");
   if (!statusEl) {
+    return;
+  }
+
+  if (raceInfo?.readOnly) {
+    statusEl.textContent = "Official result locked";
     return;
   }
 
@@ -522,13 +583,16 @@ function updateRaceStatus(raceId) {
 }
 
 function renderStandings() {
+  const adjustableRaces = races.filter((race) => !race.readOnly);
+  const adjustableRaceCount = adjustableRaces.length;
+
   const projectedStandings = drivers
     .map((driver) => {
       let extraPoints = 0;
       let sprintPointsTotal = 0;
       let finishesAssigned = 0;
 
-      races.forEach((race) => {
+      adjustableRaces.forEach((race) => {
         const raceState = getRaceState(race.id);
         const selectedPosition = raceState.get(driver.id) ?? "";
         const pointsForRace = getPointsForPosition(selectedPosition);
@@ -618,7 +682,7 @@ function renderStandings() {
                       driver.sprintPointsTotal
                         ? ` • +${driver.sprintPointsTotal} sprint pts`
                         : ""
-                    } (${driver.finishesAssigned} of ${races.length} races)`}
+                    } (${driver.finishesAssigned} of ${adjustableRaceCount} races)`}
               </td>
             </tr>
           `
