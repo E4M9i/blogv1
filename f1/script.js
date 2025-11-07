@@ -47,6 +47,8 @@ const races = [
   {
     id: "race-1",
     name: "São Paulo Grand Prix",
+    flag: "🇧🇷",
+    circuitMap: "https://www.formula1.com/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Brazil_Circuit.png.transform/9col/image.png",
     hasSprint: true,
     round: "Round 21",
     date: "Nov 9, 2025",
@@ -56,6 +58,8 @@ const races = [
   {
     id: "race-2",
     name: "Las Vegas Grand Prix",
+    flag: "🇺🇸",
+    circuitMap: "https://www.formula1.com/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Las_Vegas_Circuit.png.transform/9col/image.png",
     hasSprint: false,
     round: "Round 22",
     date: "Nov 23, 2025",
@@ -65,20 +69,24 @@ const races = [
   {
     id: "race-3",
     name: "Qatar Grand Prix",
+    flag: "🇶🇦",
+    circuitMap: "https://www.formula1.com/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Qatar_Circuit.png.transform/9col/image.png",
     hasSprint: true,
     round: "Round 23",
     date: "Nov 30, 2025",
     circuit: "Lusail International Circuit",
-    blurb: "Losail’s sweeping night layout and sprint format put tyre management and aero balance under the floodlights.",
+    blurb: "Losail's sweeping night layout and sprint format put tyre management and aero balance under the floodlights.",
   },
   {
     id: "race-4",
     name: "Abu Dhabi Grand Prix",
+    flag: "🇦🇪",
+    circuitMap: "https://www.formula1.com/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Abu_Dhabi_Circuit.png.transform/9col/image.png",
     hasSprint: false,
     round: "Round 24",
     date: "Dec 7, 2025",
     circuit: "Yas Marina Circuit",
-    blurb: "Championship decider under Yas Marina’s lights—new layout means overtakes down both main straights remain decisive.",
+    blurb: "Championship decider under Yas Marina's lights—new layout means overtakes down both main straights remain decisive.",
   },
 ];
 
@@ -196,7 +204,11 @@ function renderControls() {
     const title = document.createElement("header");
     title.className = "race-card__title";
     const heading = document.createElement("h3");
-    heading.textContent = race.name;
+    const flagSpan = document.createElement("span");
+    flagSpan.className = "race-card__flag";
+    flagSpan.textContent = race.flag || "";
+    flagSpan.setAttribute("aria-label", `Flag of ${race.name}`);
+    heading.append(flagSpan, document.createTextNode(` ${race.name}`));
     const status = document.createElement("span");
     status.className = "race-card__status";
     title.append(heading, status);
@@ -206,6 +218,17 @@ function renderControls() {
     meta.textContent = `${race.round} • ${race.circuit}`;
 
     raceCard.append(title, meta);
+
+    if (race.circuitMap) {
+      const circuitMapContainer = document.createElement("div");
+      circuitMapContainer.className = "race-card__circuit-map";
+      const circuitMapImg = document.createElement("img");
+      circuitMapImg.src = race.circuitMap;
+      circuitMapImg.alt = `${race.circuit} circuit map`;
+      circuitMapImg.className = "circuit-map__image";
+      circuitMapContainer.append(circuitMapImg);
+      raceCard.append(circuitMapContainer);
+    }
 
     if (isReadOnly) {
       const lockedNotice = document.createElement("p");

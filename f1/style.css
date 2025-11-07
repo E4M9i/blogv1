@@ -177,12 +177,41 @@ a:focus-visible {
   font-size: 1.05rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.race-card__flag {
+  font-size: 1.4rem;
+  line-height: 1;
+  display: inline-block;
 }
 
 .race-card__meta {
   margin: 0 0 0.75rem;
   font-size: 0.85rem;
   color: rgba(245, 245, 245, 0.56);
+}
+
+.race-card__circuit-map {
+  margin: 0 auto 0.75rem;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+}
+
+.circuit-map__image {
+  width: auto;
+  height: 17.5rem;
+  display: block;
+  object-fit: contain;
 }
 
 .race-card__locked-note {
@@ -446,6 +475,15 @@ button:focus-visible {
 
   .card {
     padding: 1.35rem;
+  }
+
+  .circuit-map__image {
+    height: 12rem;
+    max-width: 100%;
+  }
+
+  .race-card__circuit-map {
+    width: 100%;
   }
 
   button {
