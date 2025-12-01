@@ -1,37 +1,37 @@
 const drivers = [
   {
-    id: "oscar-piastri",
-    name: "Oscar Piastri",
-    team: "McLaren",
-    points: 366,
-    wins: 7,
-  },
-  {
     id: "lando-norris",
     name: "Lando Norris",
     team: "McLaren",
-    points: 390,
+    points: 408,
     wins: 7,
   },
   {
     id: "max-verstappen",
     name: "Max Verstappen",
     team: "Red Bull Racing",
-    points: 366,
-    wins: 6,
+    points: 396,
+    wins: 7,
+  },
+  {
+    id: "oscar-piastri",
+    name: "Oscar Piastri",
+    team: "McLaren",
+    points: 392,
+    wins: 7,
   },
   {
     id: "george-russell",
     name: "George Russell",
     team: "Mercedes",
-    points: 294,
+    points: 309,
     wins: 2,
   },
   {
     id: "charles-leclerc",
     name: "Charles Leclerc",
     team: "Ferrari",
-    points: 226,
+    points: 230,
     wins: 0,
   },
   {
@@ -46,17 +46,6 @@ const drivers = [
 const races = [
   {
     id: "race-1",
-    name: "Qatar Grand Prix",
-    flag: "🇶🇦",
-    circuitMap: "https://www.formula1.com/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Qatar_Circuit.png.transform/9col/image.png",
-    hasSprint: true,
-    round: "Round 23",
-    date: "Nov 30, 2025",
-    circuit: "Lusail International Circuit",
-    blurb: "Losail's sweeping night layout and sprint format put tyre management and aero balance under the floodlights.",
-  },
-  {
-    id: "race-2",
     name: "Abu Dhabi Grand Prix",
     flag: "🇦🇪",
     circuitMap: "https://www.formula1.com/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Abu_Dhabi_Circuit.png.transform/9col/image.png",
